@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stride AI | Secure Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; font-family: sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center p-6">
+
+    <div id="gate" class="max-w-md w-full glass p-8 rounded-2xl text-center shadow-2xl">
+        <div class="mb-6">
+            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/50">
+                <span class="text-2xl font-bold">S</span>
+            </div>
+            <h1 class="text-2xl font-bold">Stride AI</h1>
+            <p class="text-gray-400 text-sm mt-2">Private Founder's Beta - Accra 2026</p>
+        </div>
+
+        <div class="space-y-4">
+            <input type="password" id="accessCode" placeholder="Enter Access Code" 
+                class="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:border-blue-500 transition-all text-center tracking-widest">
+            <button onclick="checkAccess()" 
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-[1.02]">
+                Unlock Dashboard
+            </button>
+            <p id="errorMsg" class="text-red-500 text-xs hidden">Invalid code. Please contact Michael.</p>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden max-w-4xl w-full">
+        <nav class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold text-blue-500">Stride Dashboard</h1>
+            <button class="bg-gray-800 px-4 py-2 rounded-lg text-sm">Level 200 Student</button>
+        </nav>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass p-6 rounded-xl">
+                <h3 class="text-gray-400 text-sm">Virtual Visa Balance</h3>
+                <p class="text-3xl font-bold mt-2">$0.00</p>
+            </div>
+            <div class="glass p-6 rounded-xl border-l-4 border-blue-500">
+                <h3 class="text-gray-400 text-sm">Next Installment</h3>
+                <p class="text-3xl font-bold mt-2">GH₵ 0.00</p>
+            </div>
+        </div>
+        <button class="mt-8 w-full bg-white text-black font-bold py-4 rounded-xl">Generate New Card</button>
+    </div>
+
+    <script>
+        function checkAccess() {
+            const code = document.getElementById('accessCode').value;
+            const gate = document.getElementById('gate');
+            const dashboard = document.getElementById('dashboard');
+            const error = document.getElementById('errorMsg');
+
+            // Your specific access code
+            if (code === "STRIDE-ACCRA-2026") {
+                gate.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('accessCode').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

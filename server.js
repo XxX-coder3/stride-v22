@@ -1,14 +1,28 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.post('/create-card', async (req, res) => {
+    try {
+        const response = await axios.post('https://api.bridgecard.co/v1/issuing/sandbox/cards/virtual', {
+            cardholder_id: "ID_FROM_KYC",
+            card_type: "visa",
+            currency: "USD"
+        }, {
+            headers: { 'Authorization': `Bearer ${process.env.BRIDGECARD_API_KEY}` }
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send("Card Creation Failed");
+    }
 });
-
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-    console.log(`Stride Engine running on port ${PORT}`);
+app.post('/create-card', async (req, res) => {
+    try {
+        const response = await axios.post('https://api.bridgecard.co/v1/issuing/sandbox/cards/virtual', {
+            cardholder_id: "ID_FROM_KYC",
+            card_type: "visa",
+            currency: "USD"
+        }, {
+            headers: { 'Authorization': `Bearer ${process.env.BRIDGECARD_API_KEY}` }
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send("Card Creation Failed");
+    }
 });
